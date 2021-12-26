@@ -21,6 +21,28 @@ class CBEViewController: UIViewController {
     @IBOutlet var tfN2: UITextField!
     @IBOutlet var tfInputCeta: UITextField!
     
+    func drawCircle(xCtr: Int, yCtr: Int){
+        UIGraphicsBeginImageContext(imgView.frame.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setLineWidth(1.5)
+        context.setStrokeColor(UIColor.lightGray.cgColor)
+        
+        let ctrCircle = CGRect(x: xCtr - 150, y: yCtr - 150, width: 300, height: 300)
+        context.addEllipse(in: ctrCircle)
+        context.strokePath()
+        
+        context.setLineWidth(1.0)
+        context.setStrokeColor(UIColor.gray.cgColor)
+        context.move(to: CGPoint(x: xCtr, y: yCtr - 180)) //y축
+        context.addLine(to: CGPoint(x: xCtr, y: yCtr + 180))
+        context.move(to: CGPoint(x: xCtr - 180, y: yCtr)) //x축
+        context.addLine(to: CGPoint(x: xCtr + 180, y: yCtr))
+        context.strokePath()
+        
+        imgView.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+    }
+    
     /*
     let sinus = sin(90.0 * Double.pi / 180)
     let cosinus = cos(90 * Double.pi / 180)
@@ -29,26 +51,7 @@ class CBEViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        UIGraphicsBeginImageContext(imgView.frame.size)
-        let context = UIGraphicsGetCurrentContext()!
-        context.setLineWidth(1.5)
-        context.setStrokeColor(UIColor.lightGray.cgColor)
-        
-        let ctrCircle = CGRect(x: 30, y: 160, width: 300, height: 300)
-        context.addEllipse(in: ctrCircle)
-        context.strokePath()
-        
-        context.setLineWidth(1.0)
-        context.setStrokeColor(UIColor.gray.cgColor)
-        context.move(to: CGPoint(x: 180, y: 130)) //y축
-        context.addLine(to: CGPoint(x: 180, y: 490))
-        context.move(to: CGPoint(x: 10, y: 310)) //x축
-        context.addLine(to: CGPoint(x: 360, y: 310))
-        context.strokePath()
-        
-        imgView.image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        drawCircle(xCtr: 180, yCtr: 310)
 
         // Do any additional setup after loading the view.
     }
@@ -79,24 +82,10 @@ class CBEViewController: UIViewController {
         let cosOutCeta :Double = cos(outCeta * Double.pi / 180) //cos 90-굴절각
         //굴절점 좌표: (180+cosOutCeta, 310+sinOutCeta)
         
+        drawCircle(xCtr: 180, yCtr: 310)
+        
         UIGraphicsBeginImageContext(imgView.frame.size) //그림그리기
         let context = UIGraphicsGetCurrentContext()!
-        
-        //중심원 그리기 (중심 = (180, 310))
-        context.setLineWidth(1.3)
-        context.setStrokeColor(UIColor.lightGray.cgColor)
-        let ctrCircle = CGRect(x: 30, y: 160, width: 300, height: 300)
-        context.addEllipse(in: ctrCircle)
-        context.strokePath()
-        
-        //x축, y축 그리기
-        context.setLineWidth(1.0)
-        context.setStrokeColor(UIColor.gray.cgColor)
-        context.move(to: CGPoint(x: 180, y: 130)) //y축
-        context.addLine(to: CGPoint(x: 180, y: 490))
-        context.move(to: CGPoint(x: 10, y: 310)) //x축
-        context.addLine(to: CGPoint(x: 360, y: 310))
-        context.strokePath()
         
         //입사, 굴절선 그리기
         let multipleNum = 200.0 //선 길이 증폭 = multipleNum 배
