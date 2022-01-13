@@ -10,6 +10,6 @@ Readme.txt
 This application was developed to operate with iOS 14.0 or higher version.
 Do not use, edit, or distribute the code without permission.
 ----------
-Version_1.0 (Beta)
+Version_1.1 (Beta)
 Written in 20211223
 Copyright 2021. Jiwon Jeong All rights reserved.

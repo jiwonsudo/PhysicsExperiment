@@ -22,7 +22,6 @@ class CBEViewController: UIViewController {
     @IBOutlet var tfInputCeta: UITextField!
     
     func drawCircle(xCtr: Int, yCtr: Int){
-        UIGraphicsBeginImageContext(imgView.frame.size)
         let context = UIGraphicsGetCurrentContext()!
         context.setLineWidth(1.5)
         context.setStrokeColor(UIColor.lightGray.cgColor)
@@ -38,20 +37,14 @@ class CBEViewController: UIViewController {
         context.move(to: CGPoint(x: xCtr - 180, y: yCtr)) //x축
         context.addLine(to: CGPoint(x: xCtr + 180, y: yCtr))
         context.strokePath()
-        
-        imgView.image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
     }
-    
-    /*
-    let sinus = sin(90.0 * Double.pi / 180)
-    let cosinus = cos(90 * Double.pi / 180)
-    let tangent = tan(90 * Double.pi / 180)
-    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIGraphicsBeginImageContext(imgView.frame.size)
         drawCircle(xCtr: 180, yCtr: 310)
+        imgView.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
 
         // Do any additional setup after loading the view.
     }
@@ -72,7 +65,6 @@ class CBEViewController: UIViewController {
         //입사점 좌표: (180-cosInCeta, 310-sinInCeta)
         
         //굴절각 좌표 구하기
-        
         let sinCeta1 = sin(ceta1 * Double.pi / 180) //sin 입사각
         let sinCeta2 = Double(sinCeta1 / refN) //sin 입사각 / 상대굴절률 = sin 굴절각
         let ceta2 = asin(sinCeta2) * 180 / Double.pi //굴절각
@@ -82,10 +74,10 @@ class CBEViewController: UIViewController {
         let cosOutCeta :Double = cos(outCeta * Double.pi / 180) //cos 90-굴절각
         //굴절점 좌표: (180+cosOutCeta, 310+sinOutCeta)
         
-        drawCircle(xCtr: 180, yCtr: 310)
-        
         UIGraphicsBeginImageContext(imgView.frame.size) //그림그리기
         let context = UIGraphicsGetCurrentContext()!
+        
+        drawCircle(xCtr: 180, yCtr: 310)
         
         //입사, 굴절선 그리기
         let multipleNum = 200.0 //선 길이 증폭 = multipleNum 배
