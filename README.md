@@ -4,6 +4,8 @@
 
 **고등학교 물리 1의 파동 굴절을 직접 조작하며 배우는 교육용 iOS 앱**
 
+🏆 **매천고등학교 교내 소프트웨어 공모전 최우수상** (2021.12)
+
 <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=swift&logoColor=white" alt="Swift">
 <img src="https://img.shields.io/badge/UIKit-2396F3?style=flat-square&logo=apple&logoColor=white" alt="UIKit">
 <img src="https://img.shields.io/badge/iOS-000000?style=flat-square&logo=apple&logoColor=white" alt="iOS">
@@ -16,7 +18,7 @@
 
 ## 소개
 
-고등학교 2학년 물리 수업 발표와 교내 소프트웨어 공모전 출품을 위해 만든 앱입니다. 입사각을 바꾸며 굴절이 어떻게 일어나는지 시각적으로 확인할 수 있습니다.
+고등학교 2학년 물리 수업 발표를 위해 만든 앱으로, 교내 소프트웨어 공모전에서 **최우수상**을 받았습니다. 입사각을 바꾸며 굴절이 어떻게 일어나는지 시각적으로 확인할 수 있습니다.
 
 ## 화면 구성
 
